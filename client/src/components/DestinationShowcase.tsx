@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronRight, Search, Smile, DollarSign, Shield, Wifi } from 'lucide-react';
+import { ChevronRight, Search, Smile, DollarSign, Shield, Wifi, Filter, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import destinations from '@/data/destinations';
 
@@ -13,6 +13,7 @@ export default function DestinationShowcase() {
   });
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [filteredDestinations, setFilteredDestinations] = useState(destinations);
+  const [showFilters, setShowFilters] = useState(false);
 
   // Extract all unique tags
   const allTags = Array.from(new Set(destinations.flatMap(d => d.tags)));
@@ -73,13 +74,32 @@ export default function DestinationShowcase() {
     );
   };
   
-  // Render rating stars
-  const RatingStars = ({ rating, max = 5 }: { rating: number, max?: number }) => {
+  // Toggle filter visibility
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  };
+  
+  // Count active filters
+  const activeFilterCount = () => {
+    return Object.values(filters).filter(v => v > 0).length + selectedTags.length;
+  };
+  
+  // Render rating score with icon
+  const RatingScore = ({ type, score }: { type: string, score: number }) => {
+    const getIcon = () => {
+      switch (type) {
+        case 'fun': return <Smile className="w-4 h-4 mr-1" />;
+        case 'affordability': return <DollarSign className="w-4 h-4 mr-1" />;
+        case 'safety': return <Shield className="w-4 h-4 mr-1" />;
+        case 'wifi': return <Wifi className="w-4 h-4 mr-1" />;
+        default: return null;
+      }
+    };
+    
     return (
-      <div className="flex">
-        {[...Array(max)].map((_, i) => (
-          <div key={i} className={`w-4 h-4 rounded-full mr-0.5 ${i < Math.floor(rating) ? 'bg-[hsl(var(--primary))]' : 'bg-gray-200'}`}></div>
-        ))}
+      <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
+        {getIcon()}
+        <span className="font-medium">{score.toFixed(1)}</span>
       </div>
     );
   };
@@ -112,100 +132,117 @@ export default function DestinationShowcase() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
+              
+              <button 
+                onClick={toggleFilters}
+                className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md border ${
+                  activeFilterCount() > 0 
+                    ? 'bg-[hsl(var(--primary))] text-white border-[hsl(var(--primary))]'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <Filter size={20} />
+                <span>Filters {activeFilterCount() > 0 ? `(${activeFilterCount()})` : ''}</span>
+                {showFilters && <X size={16} />}
+              </button>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="space-y-2">
-                <div className="flex items-center mb-1">
-                  <Smile className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
-                  <span className="font-medium">Fun</span>
+            {showFilters && (
+              <div className="border-t pt-6 mt-2">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                  <div className="space-y-2">
+                    <div className="flex items-center mb-1">
+                      <Smile className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
+                      <span className="font-medium">Fun</span>
+                    </div>
+                    <div className="flex space-x-1">
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <button 
+                          key={`fun-${num}`}
+                          className={`w-8 h-8 rounded-full ${filters.fun === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
+                          onClick={() => handleRatingFilterChange('fun', num)}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center mb-1">
+                      <DollarSign className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
+                      <span className="font-medium">Affordability</span>
+                    </div>
+                    <div className="flex space-x-1">
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <button 
+                          key={`affordability-${num}`}
+                          className={`w-8 h-8 rounded-full ${filters.affordability === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
+                          onClick={() => handleRatingFilterChange('affordability', num)}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center mb-1">
+                      <Shield className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
+                      <span className="font-medium">Safety</span>
+                    </div>
+                    <div className="flex space-x-1">
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <button 
+                          key={`safety-${num}`}
+                          className={`w-8 h-8 rounded-full ${filters.safety === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
+                          onClick={() => handleRatingFilterChange('safety', num)}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-center mb-1">
+                      <Wifi className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
+                      <span className="font-medium">WiFi</span>
+                    </div>
+                    <div className="flex space-x-1">
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <button 
+                          key={`wifi-${num}`}
+                          className={`w-8 h-8 rounded-full ${filters.wifi === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
+                          onClick={() => handleRatingFilterChange('wifi', num)}
+                        >
+                          {num}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex space-x-1">
-                  {[1, 2, 3, 4, 5].map((num) => (
-                    <button 
-                      key={`fun-${num}`}
-                      className={`w-8 h-8 rounded-full ${filters.fun === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
-                      onClick={() => handleRatingFilterChange('fun', num)}
-                    >
-                      {num}
-                    </button>
-                  ))}
+                
+                <div>
+                  <h4 className="font-medium mb-2">Popular Tags</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {allTags.map(tag => (
+                      <button
+                        key={tag}
+                        className={`px-3 py-1 rounded-full text-sm ${
+                          selectedTags.includes(tag) 
+                            ? 'bg-[hsl(var(--primary))] text-white' 
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                        onClick={() => toggleTag(tag)}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center mb-1">
-                  <DollarSign className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
-                  <span className="font-medium">Affordability</span>
-                </div>
-                <div className="flex space-x-1">
-                  {[1, 2, 3, 4, 5].map((num) => (
-                    <button 
-                      key={`affordability-${num}`}
-                      className={`w-8 h-8 rounded-full ${filters.affordability === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
-                      onClick={() => handleRatingFilterChange('affordability', num)}
-                    >
-                      {num}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center mb-1">
-                  <Shield className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
-                  <span className="font-medium">Safety</span>
-                </div>
-                <div className="flex space-x-1">
-                  {[1, 2, 3, 4, 5].map((num) => (
-                    <button 
-                      key={`safety-${num}`}
-                      className={`w-8 h-8 rounded-full ${filters.safety === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
-                      onClick={() => handleRatingFilterChange('safety', num)}
-                    >
-                      {num}
-                    </button>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex items-center mb-1">
-                  <Wifi className="w-4 h-4 mr-2 text-[hsl(var(--primary))]" />
-                  <span className="font-medium">WiFi</span>
-                </div>
-                <div className="flex space-x-1">
-                  {[1, 2, 3, 4, 5].map((num) => (
-                    <button 
-                      key={`wifi-${num}`}
-                      className={`w-8 h-8 rounded-full ${filters.wifi === num ? 'bg-[hsl(var(--primary))] text-white' : 'bg-gray-200'}`}
-                      onClick={() => handleRatingFilterChange('wifi', num)}
-                    >
-                      {num}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-medium mb-2">Popular Tags</h4>
-              <div className="flex flex-wrap gap-2">
-                {allTags.map(tag => (
-                  <button
-                    key={tag}
-                    className={`px-3 py-1 rounded-full text-sm ${
-                      selectedTags.includes(tag) 
-                        ? 'bg-[hsl(var(--primary))] text-white' 
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                    onClick={() => toggleTag(tag)}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </motion.div>
         
@@ -238,31 +275,33 @@ export default function DestinationShowcase() {
                     </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{destination.name}</h3>
-                  
-                  <div className="grid grid-cols-2 gap-2 mb-4">
-                    <div className="flex items-center">
-                      <Smile className="w-4 h-4 mr-1 text-[hsl(var(--primary))]" />
-                      <RatingStars rating={destination.ratings.fun} />
+                <div className="relative">
+                  {/* Rating badges overlay */}
+                  <div className="absolute top-0 left-0 w-full p-2 flex justify-between">
+                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
+                      <Smile className="w-4 h-4 mr-1" />
+                      <span className="font-medium">{destination.ratings.fun.toFixed(1)}</span>
                     </div>
-                    <div className="flex items-center">
-                      <DollarSign className="w-4 h-4 mr-1 text-[hsl(var(--primary))]" />
-                      <RatingStars rating={destination.ratings.affordability} />
-                    </div>
-                    <div className="flex items-center">
-                      <Shield className="w-4 h-4 mr-1 text-[hsl(var(--primary))]" />
-                      <RatingStars rating={destination.ratings.safety} />
-                    </div>
-                    <div className="flex items-center">
-                      <Wifi className="w-4 h-4 mr-1 text-[hsl(var(--primary))]" />
-                      <RatingStars rating={destination.ratings.wifi} />
+                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
+                      <DollarSign className="w-4 h-4 mr-1" />
+                      <span className="font-medium">{destination.ratings.affordability.toFixed(1)}</span>
                     </div>
                   </div>
+                  <div className="absolute bottom-2 left-0 w-full px-2 flex justify-between">
+                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
+                      <Shield className="w-4 h-4 mr-1" />
+                      <span className="font-medium">{destination.ratings.safety.toFixed(1)}</span>
+                    </div>
+                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
+                      <Wifi className="w-4 h-4 mr-1" />
+                      <span className="font-medium">{destination.ratings.wifi.toFixed(1)}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-3">
+                  <h3 className="text-xl font-bold mb-2">{destination.name}</h3>
                   
-                  <p className="text-nomad-gray mb-4">{destination.description}</p>
-                  
-                  <div className="flex flex-wrap gap-1 mb-4">
+                  <div className="flex flex-wrap gap-1 mb-3">
                     {destination.tags.slice(0, 3).map((tag, index) => (
                       <span 
                         key={index} 
@@ -276,7 +315,7 @@ export default function DestinationShowcase() {
                     }
                   </div>
                   
-                  <a href="#" className="text-[hsl(var(--primary))] font-medium flex items-center">
+                  <a href="#" className="text-[hsl(var(--primary))] font-medium flex items-center text-sm">
                     Learn more
                     <ChevronRight className="w-4 h-4 ml-1" />
                   </a>
