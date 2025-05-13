@@ -84,26 +84,6 @@ export default function DestinationShowcase() {
     return Object.values(filters).filter(v => v > 0).length + selectedTags.length;
   };
   
-  // Render rating score with icon
-  const RatingScore = ({ type, score }: { type: string, score: number }) => {
-    const getIcon = () => {
-      switch (type) {
-        case 'fun': return <Smile className="w-4 h-4 mr-1" />;
-        case 'affordability': return <DollarSign className="w-4 h-4 mr-1" />;
-        case 'safety': return <Shield className="w-4 h-4 mr-1" />;
-        case 'wifi': return <Wifi className="w-4 h-4 mr-1" />;
-        default: return null;
-      }
-    };
-    
-    return (
-      <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
-        {getIcon()}
-        <span className="font-medium">{score.toFixed(1)}</span>
-      </div>
-    );
-  };
-  
   return (
     <section id="destinations" className="py-16 sm:py-24 bg-nomad-lightgray">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -274,30 +254,30 @@ export default function DestinationShowcase() {
                       {destination.country}
                     </div>
                   </div>
-                </div>
-                <div className="relative">
-                  {/* Rating badges overlay */}
-                  <div className="absolute top-0 left-0 w-full p-2 flex justify-between">
-                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
-                      <Smile className="w-4 h-4 mr-1" />
-                      <span className="font-medium">{destination.ratings.fun.toFixed(1)}</span>
-                    </div>
-                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
-                      <DollarSign className="w-4 h-4 mr-1" />
-                      <span className="font-medium">{destination.ratings.affordability.toFixed(1)}</span>
+                  
+                  {/* Rating badges - now with colorful styling */}
+                  <div className="absolute top-0 left-0 w-full p-2 z-10">
+                    <div className="grid grid-cols-2 gap-1">
+                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-sm">
+                        <Smile className="w-4 h-4 mr-1 text-white" />
+                        <span className="font-medium text-white">{destination.ratings.fun.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-green-400 to-green-500 rounded-full shadow-sm">
+                        <DollarSign className="w-4 h-4 mr-1 text-white" />
+                        <span className="font-medium text-white">{destination.ratings.affordability.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full shadow-sm mt-1">
+                        <Shield className="w-4 h-4 mr-1 text-white" />
+                        <span className="font-medium text-white">{destination.ratings.safety.toFixed(1)}</span>
+                      </div>
+                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-purple-400 to-purple-500 rounded-full shadow-sm mt-1">
+                        <Wifi className="w-4 h-4 mr-1 text-white" />
+                        <span className="font-medium text-white">{destination.ratings.wifi.toFixed(1)}</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute bottom-2 left-0 w-full px-2 flex justify-between">
-                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
-                      <Shield className="w-4 h-4 mr-1" />
-                      <span className="font-medium">{destination.ratings.safety.toFixed(1)}</span>
-                    </div>
-                    <div className="flex items-center px-2 py-1 bg-white bg-opacity-90 rounded-full">
-                      <Wifi className="w-4 h-4 mr-1" />
-                      <span className="font-medium">{destination.ratings.wifi.toFixed(1)}</span>
-                    </div>
-                  </div>
                 </div>
+                
                 <div className="p-3">
                   <h3 className="text-xl font-bold mb-2">{destination.name}</h3>
                   
