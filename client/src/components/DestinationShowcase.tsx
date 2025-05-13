@@ -255,25 +255,56 @@ export default function DestinationShowcase() {
                     </div>
                   </div>
                   
-                  {/* Rating badges - now with colorful styling */}
-                  <div className="absolute top-0 left-0 w-full p-2 z-10">
-                    <div className="grid grid-cols-2 gap-1">
-                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full shadow-sm">
-                        <Smile className="w-4 h-4 mr-1 text-white" />
-                        <span className="font-medium text-white">{destination.ratings.fun.toFixed(1)}</span>
-                      </div>
-                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-green-400 to-green-500 rounded-full shadow-sm">
-                        <DollarSign className="w-4 h-4 mr-1 text-white" />
-                        <span className="font-medium text-white">{destination.ratings.affordability.toFixed(1)}</span>
-                      </div>
-                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full shadow-sm mt-1">
-                        <Shield className="w-4 h-4 mr-1 text-white" />
-                        <span className="font-medium text-white">{destination.ratings.safety.toFixed(1)}</span>
-                      </div>
-                      <div className="flex items-center px-2 py-1 bg-gradient-to-r from-purple-400 to-purple-500 rounded-full shadow-sm mt-1">
-                        <Wifi className="w-4 h-4 mr-1 text-white" />
-                        <span className="font-medium text-white">{destination.ratings.wifi.toFixed(1)}</span>
-                      </div>
+                  {/* Rating badges - now stacked vertically with hover animations */}
+                  <div className="absolute top-0 left-0 p-2 z-10">
+                    <div className="flex flex-col space-y-1">
+                      <motion.div 
+                        className="flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg shadow-sm overflow-hidden"
+                        whileHover={{ width: "160px", transition: { duration: 0.3 } }}
+                        initial={{ width: "auto" }}
+                      >
+                        <div className="flex items-center px-2 py-1 flex-shrink-0">
+                          <Smile className="w-4 h-4 mr-1 text-white" />
+                          <span className="font-medium text-white">{destination.ratings.fun.toFixed(1)}</span>
+                        </div>
+                        <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">Fun Rating</div>
+                      </motion.div>
+                      
+                      <motion.div 
+                        className="flex items-center bg-gradient-to-r from-green-400 to-green-500 rounded-lg shadow-sm overflow-hidden"
+                        whileHover={{ width: "160px", transition: { duration: 0.3 } }}
+                        initial={{ width: "auto" }}
+                      >
+                        <div className="flex items-center px-2 py-1 flex-shrink-0">
+                          <DollarSign className="w-4 h-4 mr-1 text-white" />
+                          <span className="font-medium text-white">{destination.ratings.affordability.toFixed(1)}</span>
+                        </div>
+                        <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">Affordability</div>
+                      </motion.div>
+                      
+                      <motion.div 
+                        className="flex items-center bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg shadow-sm overflow-hidden"
+                        whileHover={{ width: "160px", transition: { duration: 0.3 } }}
+                        initial={{ width: "auto" }}
+                      >
+                        <div className="flex items-center px-2 py-1 flex-shrink-0">
+                          <Shield className="w-4 h-4 mr-1 text-white" />
+                          <span className="font-medium text-white">{destination.ratings.safety.toFixed(1)}</span>
+                        </div>
+                        <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">Safety</div>
+                      </motion.div>
+                      
+                      <motion.div 
+                        className="flex items-center bg-gradient-to-r from-purple-400 to-purple-500 rounded-lg shadow-sm overflow-hidden"
+                        whileHover={{ width: "160px", transition: { duration: 0.3 } }}
+                        initial={{ width: "auto" }}
+                      >
+                        <div className="flex items-center px-2 py-1 flex-shrink-0">
+                          <Wifi className="w-4 h-4 mr-1 text-white" />
+                          <span className="font-medium text-white">{destination.ratings.wifi.toFixed(1)}</span>
+                        </div>
+                        <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">WiFi Speed</div>
+                      </motion.div>
                     </div>
                   </div>
                 </div>
