@@ -69,7 +69,7 @@ export default function Community() {
             <div className="rounded-lg overflow-hidden shadow-lg">
               <img 
                 src="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600" 
-                alt="Nomad community gathering" 
+                alt="Nomad Network community gathering" 
                 className="w-full h-full object-cover"
               />
             </div>

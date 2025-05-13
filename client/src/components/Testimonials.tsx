@@ -13,9 +13,9 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">What Our Nomads Say</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">What Our Members Say</h2>
           <p className="text-nomad-gray max-w-2xl mx-auto text-lg">
-            Hear from our community members about their experiences with Nomads.
+            Hear from our community members about their experiences with Nomad Network.
           </p>
         </motion.div>
         
