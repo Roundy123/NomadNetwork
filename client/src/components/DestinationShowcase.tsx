@@ -255,75 +255,91 @@ export default function DestinationShowcase() {
                     </div>
                   </div>
                   
-                  {/* Rating badges - now proportional to rating value with hover animations */}
+                  {/* Rating badges with tooltips */}
                   <div className="absolute top-0 left-0 p-2 z-10">
                     <div className="flex flex-col space-y-1">
-                      <div className="relative h-7 w-32">
-                        <motion.div 
-                          className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "70px" }}
-                          whileHover={{ 
-                            width: `${Math.max(100, destination.ratings.fun * 40)}px`, // min 100px, then 40px per rating point
-                            transition: { duration: 0.5 }
-                          }}
-                        >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
-                            <Smile className="w-4 h-4 mr-1 text-white" />
-                            <span className="font-medium text-white text-xs">{destination.ratings.fun.toFixed(1)}</span>
+                      <div className="relative h-7">
+                        <div className="group" title="Fun Rating">
+                          <motion.div 
+                            className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg shadow-sm overflow-hidden"
+                            initial={{ width: "70px" }}
+                            whileHover={{ 
+                              width: `${Math.max(100, destination.ratings.fun * 40)}px`,
+                              transition: { duration: 0.5 }
+                            }}
+                          >
+                            <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
+                              <Smile className="w-4 h-4 mr-1 text-white" />
+                              <span className="font-medium text-white text-xs">{destination.ratings.fun.toFixed(1)}</span>
+                            </div>
+                          </motion.div>
+                          <div className="absolute opacity-0 group-hover:opacity-100 bg-black text-white text-xs p-1 rounded top-8 left-0 transition-opacity duration-300">
+                            Fun Rating
                           </div>
-                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">Fun Rating</div>
-                        </motion.div>
+                        </div>
                       </div>
                       
-                      <div className="relative h-7 w-32">
-                        <motion.div 
-                          className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-green-400 to-green-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "70px" }}
-                          whileHover={{ 
-                            width: `${Math.max(100, destination.ratings.affordability * 40)}px`,
-                            transition: { duration: 0.5 }
-                          }}
-                        >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
-                            <DollarSign className="w-4 h-4 mr-1 text-white" />
-                            <span className="font-medium text-white text-xs">{destination.ratings.affordability.toFixed(1)}</span>
+                      <div className="relative h-7">
+                        <div className="group" title="Affordability">
+                          <motion.div 
+                            className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-green-400 to-green-500 rounded-lg shadow-sm overflow-hidden"
+                            initial={{ width: "70px" }}
+                            whileHover={{ 
+                              width: `${Math.max(100, destination.ratings.affordability * 40)}px`,
+                              transition: { duration: 0.5 }
+                            }}
+                          >
+                            <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
+                              <DollarSign className="w-4 h-4 mr-1 text-white" />
+                              <span className="font-medium text-white text-xs">{destination.ratings.affordability.toFixed(1)}</span>
+                            </div>
+                          </motion.div>
+                          <div className="absolute opacity-0 group-hover:opacity-100 bg-black text-white text-xs p-1 rounded top-8 left-0 transition-opacity duration-300">
+                            Affordability
                           </div>
-                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">Cost</div>
-                        </motion.div>
+                        </div>
                       </div>
                       
-                      <div className="relative h-7 w-32">
-                        <motion.div 
-                          className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "70px" }}
-                          whileHover={{ 
-                            width: `${Math.max(100, destination.ratings.safety * 40)}px`,
-                            transition: { duration: 0.5 }
-                          }}
-                        >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
-                            <Shield className="w-4 h-4 mr-1 text-white" />
-                            <span className="font-medium text-white text-xs">{destination.ratings.safety.toFixed(1)}</span>
+                      <div className="relative h-7">
+                        <div className="group" title="Safety">
+                          <motion.div 
+                            className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg shadow-sm overflow-hidden"
+                            initial={{ width: "70px" }}
+                            whileHover={{ 
+                              width: `${Math.max(100, destination.ratings.safety * 40)}px`,
+                              transition: { duration: 0.5 }
+                            }}
+                          >
+                            <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
+                              <Shield className="w-4 h-4 mr-1 text-white" />
+                              <span className="font-medium text-white text-xs">{destination.ratings.safety.toFixed(1)}</span>
+                            </div>
+                          </motion.div>
+                          <div className="absolute opacity-0 group-hover:opacity-100 bg-black text-white text-xs p-1 rounded top-8 left-0 transition-opacity duration-300">
+                            Safety Rating
                           </div>
-                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">Safety</div>
-                        </motion.div>
+                        </div>
                       </div>
                       
-                      <div className="relative h-7 w-32">
-                        <motion.div 
-                          className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-purple-400 to-purple-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "70px" }}
-                          whileHover={{ 
-                            width: `${Math.max(100, destination.ratings.wifi * 40)}px`,
-                            transition: { duration: 0.5 }
-                          }}
-                        >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
-                            <Wifi className="w-4 h-4 mr-1 text-white" />
-                            <span className="font-medium text-white text-xs">{destination.ratings.wifi.toFixed(1)}</span>
+                      <div className="relative h-7">
+                        <div className="group" title="WiFi Speed">
+                          <motion.div 
+                            className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-purple-400 to-purple-500 rounded-lg shadow-sm overflow-hidden"
+                            initial={{ width: "70px" }}
+                            whileHover={{ 
+                              width: `${Math.max(100, destination.ratings.wifi * 40)}px`,
+                              transition: { duration: 0.5 }
+                            }}
+                          >
+                            <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
+                              <Wifi className="w-4 h-4 mr-1 text-white" />
+                              <span className="font-medium text-white text-xs">{destination.ratings.wifi.toFixed(1)}</span>
+                            </div>
+                          </motion.div>
+                          <div className="absolute opacity-0 group-hover:opacity-100 bg-black text-white text-xs p-1 rounded top-8 left-0 transition-opacity duration-300">
+                            WiFi Speed
                           </div>
-                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">WiFi Speed</div>
-                        </motion.div>
+                        </div>
                       </div>
                     </div>
                   </div>
