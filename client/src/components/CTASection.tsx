@@ -12,7 +12,7 @@ export default function CTASection() {
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Ready to Start Your Nomad Journey?</h2>
           <p className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of remote workers who have found their freedom and community with Nomads.
+            Join thousands of remote workers who have found their freedom and community with Nomad Network.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <motion.a 

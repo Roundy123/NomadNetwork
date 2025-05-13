@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
           <div className="lg:col-span-2">
-            <Link href="/" className="text-2xl font-bold mb-4 inline-block">Nomads</Link>
+            <Link href="/" className="text-2xl font-bold mb-4 inline-block">Nomad Network</Link>
             <p className="mb-6 text-gray-400 max-w-md">
               Empowering remote workers to explore the world while building meaningful careers and connections.
             </p>
@@ -62,7 +62,7 @@ export default function Footer() {
         
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">&copy; {new Date().getFullYear()} Nomads Inc. All rights reserved.</p>
+            <p className="text-gray-400 text-sm mb-4 md:mb-0">&copy; {new Date().getFullYear()} Nomad Network Inc. All rights reserved.</p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>

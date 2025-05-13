@@ -15,12 +15,12 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Nomads - Live Anywhere. Work Everywhere.</title>
+        <title>Nomad Network - Live Anywhere. Work Everywhere.</title>
         <meta 
           name="description" 
           content="Join our global community of remote workers and explore the world while growing your career." 
         />
-        <meta property="og:title" content="Nomads - Live Anywhere. Work Everywhere." />
+        <meta property="og:title" content="Nomad Network - Live Anywhere. Work Everywhere." />
         <meta property="og:description" content="Join our global community of remote workers and explore the world while growing your career." />
         <meta property="og:type" content="website" />
       </Helmet>
