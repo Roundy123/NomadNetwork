@@ -258,71 +258,71 @@ export default function DestinationShowcase() {
                   {/* Rating badges - now proportional to rating value with hover animations */}
                   <div className="absolute top-0 left-0 p-2 z-10">
                     <div className="flex flex-col space-y-1">
-                      <div className="relative h-6 w-16">
+                      <div className="relative h-7 w-32">
                         <motion.div 
                           className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "60px" }}
+                          initial={{ width: "70px" }}
                           whileHover={{ 
-                            width: `${destination.ratings.fun * 20}px`, // 20px per rating point (max 100px for rating of 5)
+                            width: `${Math.max(100, destination.ratings.fun * 40)}px`, // min 100px, then 40px per rating point
                             transition: { duration: 0.5 }
                           }}
                         >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-6">
+                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                             <Smile className="w-4 h-4 mr-1 text-white" />
                             <span className="font-medium text-white text-xs">{destination.ratings.fun.toFixed(1)}</span>
                           </div>
-                          <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">Fun</div>
+                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">Fun Rating</div>
                         </motion.div>
                       </div>
                       
-                      <div className="relative h-6 w-16">
+                      <div className="relative h-7 w-32">
                         <motion.div 
                           className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-green-400 to-green-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "60px" }}
+                          initial={{ width: "70px" }}
                           whileHover={{ 
-                            width: `${destination.ratings.affordability * 20}px`,
+                            width: `${Math.max(100, destination.ratings.affordability * 40)}px`,
                             transition: { duration: 0.5 }
                           }}
                         >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-6">
+                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                             <DollarSign className="w-4 h-4 mr-1 text-white" />
                             <span className="font-medium text-white text-xs">{destination.ratings.affordability.toFixed(1)}</span>
                           </div>
-                          <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">Cost</div>
+                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">Cost</div>
                         </motion.div>
                       </div>
                       
-                      <div className="relative h-6 w-16">
+                      <div className="relative h-7 w-32">
                         <motion.div 
                           className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "60px" }}
+                          initial={{ width: "70px" }}
                           whileHover={{ 
-                            width: `${destination.ratings.safety * 20}px`,
+                            width: `${Math.max(100, destination.ratings.safety * 40)}px`,
                             transition: { duration: 0.5 }
                           }}
                         >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-6">
+                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                             <Shield className="w-4 h-4 mr-1 text-white" />
                             <span className="font-medium text-white text-xs">{destination.ratings.safety.toFixed(1)}</span>
                           </div>
-                          <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">Safe</div>
+                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">Safety</div>
                         </motion.div>
                       </div>
                       
-                      <div className="relative h-6 w-16">
+                      <div className="relative h-7 w-32">
                         <motion.div 
                           className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-purple-400 to-purple-500 rounded-lg shadow-sm overflow-hidden"
-                          initial={{ width: "60px" }}
+                          initial={{ width: "70px" }}
                           whileHover={{ 
-                            width: `${destination.ratings.wifi * 20}px`,
+                            width: `${Math.max(100, destination.ratings.wifi * 40)}px`,
                             transition: { duration: 0.5 }
                           }}
                         >
-                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-6">
+                          <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                             <Wifi className="w-4 h-4 mr-1 text-white" />
                             <span className="font-medium text-white text-xs">{destination.ratings.wifi.toFixed(1)}</span>
                           </div>
-                          <div className="pl-1 pr-2 text-white text-xs whitespace-nowrap">WiFi</div>
+                          <div className="pl-1 pr-3 text-white text-xs whitespace-nowrap">WiFi Speed</div>
                         </motion.div>
                       </div>
                     </div>
