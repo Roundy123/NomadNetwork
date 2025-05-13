@@ -4,6 +4,13 @@ export interface Destination {
   country: string;
   description: string;
   imageUrl: string;
+  ratings: {
+    fun: number;
+    affordability: number;
+    safety: number;
+    wifi: number;
+  };
+  tags: string[];
 }
 
 export interface Testimonial {
