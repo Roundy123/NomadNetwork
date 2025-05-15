@@ -34,8 +34,8 @@ export default function Header() {
           </nav>
           
           <div className="hidden md:flex items-center space-x-4">
-            <a href="#" className="font-medium hover:text-[hsl(var(--primary))] transition-colors">Login</a>
-            <a href="#" className="bg-[hsl(var(--primary))] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-colors">Join Now</a>
+            <a href="/login" className="font-medium hover:text-[hsl(var(--primary))] transition-colors">Login</a>
+            <a href="/login" className="bg-[hsl(var(--primary))] text-white px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-colors">Join Now</a>
           </div>
           
           {/* Mobile menu button */}
