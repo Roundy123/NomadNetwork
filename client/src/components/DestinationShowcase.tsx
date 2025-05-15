@@ -262,11 +262,10 @@ export default function DestinationShowcase() {
                         <div className="group" title="Fun Rating">
                           <motion.div 
                             className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg shadow-sm overflow-hidden"
-                            initial={{ width: "70px" }}
-                            whileHover={{ 
-                              width: `${Math.max(100, destination.ratings.fun * 40)}px`,
-                              transition: { duration: 0.5 }
-                            }}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${Math.max(100, destination.ratings.fun * 40)}px` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
                           >
                             <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                               <Smile className="w-4 h-4 mr-1 text-white" />
@@ -283,11 +282,10 @@ export default function DestinationShowcase() {
                         <div className="group" title="Affordability">
                           <motion.div 
                             className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-green-400 to-green-500 rounded-lg shadow-sm overflow-hidden"
-                            initial={{ width: "70px" }}
-                            whileHover={{ 
-                              width: `${Math.max(100, destination.ratings.affordability * 40)}px`,
-                              transition: { duration: 0.5 }
-                            }}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${Math.max(100, destination.ratings.affordability * 40)}px` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
                           >
                             <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                               <DollarSign className="w-4 h-4 mr-1 text-white" />
@@ -304,11 +302,10 @@ export default function DestinationShowcase() {
                         <div className="group" title="Safety">
                           <motion.div 
                             className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg shadow-sm overflow-hidden"
-                            initial={{ width: "70px" }}
-                            whileHover={{ 
-                              width: `${Math.max(100, destination.ratings.safety * 40)}px`,
-                              transition: { duration: 0.5 }
-                            }}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${Math.max(100, destination.ratings.safety * 40)}px` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
                           >
                             <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                               <Shield className="w-4 h-4 mr-1 text-white" />
@@ -325,11 +322,10 @@ export default function DestinationShowcase() {
                         <div className="group" title="WiFi Speed">
                           <motion.div 
                             className="absolute top-0 left-0 flex items-center bg-gradient-to-r from-purple-400 to-purple-500 rounded-lg shadow-sm overflow-hidden"
-                            initial={{ width: "70px" }}
-                            whileHover={{ 
-                              width: `${Math.max(100, destination.ratings.wifi * 40)}px`,
-                              transition: { duration: 0.5 }
-                            }}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${Math.max(100, destination.ratings.wifi * 40)}px` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
                           >
                             <div className="flex items-center px-2 py-1 flex-shrink-0 h-7">
                               <Wifi className="w-4 h-4 mr-1 text-white" />

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: nomad-network
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # - key: DATABASE_URL
+      #   value: <your-database-url>
+databases:
+  - name: nomad-network-db
+    plan: free 

@@ -62,7 +62,7 @@ const destinations: Destination[] = [
     name: "Medellin",
     country: "Colombia",
     description: "Perfect climate, innovative city with a thriving expat and digital nomad community.",
-    imageUrl: "https://images.unsplash.com/photo-1562693315-156f8de60432?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     ratings: {
       fun: 4.5,
       affordability: 4.3,
